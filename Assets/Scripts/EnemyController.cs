@@ -18,7 +18,6 @@ public class EnemyController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("I HIT SOMETHING!");
         if (other.gameObject.tag == "TurnLandmark")
         {
             Vector3 eulerRotation = new Vector3(other.gameObject.transform.eulerAngles.x, other.gameObject.transform.eulerAngles.y+90, other.gameObject.transform.eulerAngles.z);
@@ -27,7 +26,7 @@ public class EnemyController : MonoBehaviour
         if (other.gameObject.tag == "DespawnLandmark")
         {
             Debug.Log("YOU MISSED A BALLOON LOSER!!!");
-            Destroy(this);
+            Destroy(this.gameObject);
         }
     }
 }
