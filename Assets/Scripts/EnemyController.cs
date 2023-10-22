@@ -4,16 +4,13 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public float speed = 5f;
+    public GameController gameController;
 
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.forward * Time.deltaTime * 5f);
+        transform.Translate(Vector3.forward * Time.deltaTime * speed);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -25,8 +22,14 @@ public class EnemyController : MonoBehaviour
         }
         if (other.gameObject.tag == "DespawnLandmark")
         {
-            Debug.Log("YOU MISSED A BALLOON LOSER!!!");
             Destroy(this.gameObject);
+            StorageController.RemoveGamePoints(1);
+        }
+        if (other.gameObject.tag == "Projectile")
+        {
+            Destroy(other.gameObject);
+            Destroy(this.gameObject);
+            StorageController.AddGamePoints(1);
         }
     }
 }
