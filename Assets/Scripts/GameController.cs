@@ -10,12 +10,14 @@ public class GameController : MonoBehaviour
     private float spawnX;
     private float spawnZ;
 
+    private int points = 0;
+
     // Start is called before the first frame update
     void Start()
     {
         spawnX = spawnPoint.transform.position.x;
         spawnZ = spawnPoint.transform.position.z;
-        InvokeRepeating("SpawnEnemy", 3f, 1.5f);
+        InvokeRepeating("SpawnEnemy", 3f, 1f);
     }
 
     // Update is called once per frame
@@ -24,9 +26,21 @@ public class GameController : MonoBehaviour
         
     }
 
+    public void addPoints(int pointsToAdd)
+    {
+        points += pointsToAdd;
+    }
+
+    public void removePoints(int pointsToRemove)
+    {
+        points -= pointsToRemove;
+    }
+
     // Spawn an enemy
     void SpawnEnemy()
     {
-        Instantiate(enemyToSpawn, new Vector3(spawnX, 0 , spawnZ), Quaternion.identity);
+        float speed = Random.Range(2f, 20f);
+        GameObject enemy = Instantiate(enemyToSpawn, new Vector3(spawnX, 0 , spawnZ), Quaternion.identity);
+        enemy.GetComponent<EnemyController>().speed = speed;
     }
 }
