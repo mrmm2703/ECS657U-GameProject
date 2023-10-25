@@ -40,9 +40,11 @@ public class Node : MonoBehaviour
     {
         if (!hasTower)
         {
-            towerOnNode = Instantiate(tower, transform.position, Quaternion.identity);
-            StorageController.RemoveGamePoints(towervalue);
-            hasTower = true;
+            if (StorageController.RemoveGamePoints(towervalue))
+            {
+                towerOnNode = Instantiate(tower, transform.position, Quaternion.identity);
+                hasTower = true;
+            }
         }
         else
         {

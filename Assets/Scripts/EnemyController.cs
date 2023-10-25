@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyController : MonoBehaviour
 {
@@ -24,6 +25,10 @@ public class EnemyController : MonoBehaviour
         {
             Destroy(this.gameObject);
             StorageController.RemoveHealthPoints(2);
+            if (StorageController.GetHealthPoints() < 1)
+            {
+                SceneManager.LoadScene("GameOver", LoadSceneMode.Single);
+            }
         }
         if (other.gameObject.tag == "Projectile")
         {
