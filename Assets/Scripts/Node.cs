@@ -6,6 +6,7 @@ public class Node : MonoBehaviour
 {
     public GameObject tower;
     public Color hovercolor;
+    private int towervalue = 10;
     private Renderer ren;
     private Color startcolor;
 
@@ -40,11 +41,13 @@ public class Node : MonoBehaviour
         if (!hasTower)
         {
             towerOnNode = Instantiate(tower, transform.position, Quaternion.identity);
+            StorageController.RemoveGamePoints(towervalue);
             hasTower = true;
         }
         else
         {
             Destroy(towerOnNode);
+            StorageController.AddGamePoints(towervalue / 2);
             hasTower = false;
         }
     }
