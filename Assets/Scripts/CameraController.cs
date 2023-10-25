@@ -6,6 +6,7 @@ public class CameraController : MonoBehaviour
 {
     public float speed = 1.0f;
     public Transform cameraTransform;
+    public BoxCollider cameraBounds;
 
     public float mouseSpeed = 2.0f;
 
@@ -41,19 +42,48 @@ public class CameraController : MonoBehaviour
             }
             if (Input.GetKey(KeyCode.W))
             {
-                transform.Translate(Vector3.forward * Time.deltaTime * actualSpeed);
+                Vector3 newPosition = transform.position + (Vector3.forward * Time.deltaTime * actualSpeed);
+                if (cameraBounds.bounds.Contains(newPosition))
+                {
+                    transform.Translate(Vector3.forward * Time.deltaTime * actualSpeed);
+                } else
+                {
+                    transform.Translate(Vector3.back * Time.deltaTime * actualSpeed * 2);
+                }
             }
             if (Input.GetKey(KeyCode.S))
             {
-                transform.Translate(Vector3.back * Time.deltaTime * actualSpeed);
+                Vector3 newPosition = transform.position + (Vector3.back * Time.deltaTime * actualSpeed);
+                if (cameraBounds.bounds.Contains(newPosition))
+                {
+                    transform.Translate(Vector3.back * Time.deltaTime * actualSpeed);
+                } else
+                {
+                    transform.Translate(Vector3.forward * Time.deltaTime * actualSpeed * 2);
+                }
             }
             if (Input.GetKey(KeyCode.A))
             {
-                transform.Translate(Vector3.left * Time.deltaTime * actualSpeed);
+                Vector3 newPosition = transform.position + (Vector3.left * Time.deltaTime * actualSpeed);
+                if (cameraBounds.bounds.Contains(newPosition))
+                {
+                    transform.Translate(Vector3.left * Time.deltaTime * actualSpeed);
+                } else
+                {
+                    transform.Translate(Vector3.right * Time.deltaTime * actualSpeed * 2);
+                }
             }
             if (Input.GetKey(KeyCode.D))
             {
-                transform.Translate(Vector3.right * Time.deltaTime * actualSpeed);
+                Vector3 newPosition = transform.position + (Vector3.right * Time.deltaTime * actualSpeed);
+                if (cameraBounds.bounds.Contains(newPosition))
+                {
+                    transform.Translate(Vector3.right * Time.deltaTime * actualSpeed);
+                }
+                else
+                {
+                    transform.Translate(Vector3.left * Time.deltaTime * actualSpeed * 2);
+                }
             }
             if (Input.GetKey(KeyCode.LeftArrow))
             {
@@ -73,11 +103,27 @@ public class CameraController : MonoBehaviour
             }
             if (Input.GetKey(KeyCode.Q))
             {
-                cameraTransform.Translate(Vector3.down * Time.deltaTime * actualSpeed, 0);
+                Vector3 newPosition = transform.position + (Vector3.down * Time.deltaTime * actualSpeed);
+                if (cameraBounds.bounds.Contains(newPosition))
+                {
+                    transform.Translate(Vector3.down * Time.deltaTime * actualSpeed);
+                }
+                else
+                {
+                    transform.Translate(Vector3.up * Time.deltaTime * actualSpeed * 2);
+                }
             }
             if (Input.GetKey(KeyCode.E))
             {
-                cameraTransform.Translate(Vector3.up * Time.deltaTime * actualSpeed, 0);
+                Vector3 newPosition = transform.position + (Vector3.up * Time.deltaTime * actualSpeed);
+                if (cameraBounds.bounds.Contains(newPosition))
+                {
+                    transform.Translate(Vector3.up * Time.deltaTime * actualSpeed);
+                }
+                else
+                {
+                    transform.Translate(Vector3.down * Time.deltaTime * actualSpeed * 2);
+                }
             }
         }
 

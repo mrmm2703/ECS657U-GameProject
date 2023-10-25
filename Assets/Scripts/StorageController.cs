@@ -18,4 +18,14 @@ public static class StorageController
         gamePoints -= pointsToRemove;
         Debug.Log("Removed " + pointsToRemove.ToString() + " points. Points: " + gamePoints.ToString());
     }
+
+    public static int GetGamePoints()
+    {
+        return gamePoints;
+    }
+
+    public static void SetGamePoints(int newPoints)
+    {
+        gamePoints = newPoints;
+    }
 }
