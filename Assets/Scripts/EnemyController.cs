@@ -23,7 +23,7 @@ public class EnemyController : MonoBehaviour
         if (other.gameObject.tag == "DespawnLandmark")
         {
             Destroy(this.gameObject);
-            StorageController.RemoveGamePoints(1);
+            StorageController.RemoveHealthPoints(2);
         }
         if (other.gameObject.tag == "Projectile")
         {

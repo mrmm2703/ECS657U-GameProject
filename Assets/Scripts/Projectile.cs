@@ -16,5 +16,11 @@ public class Projectile : MonoBehaviour
     public void Setup(Vector3 shootDirection)
     {
         this.shootDirection = shootDirection;
+        Invoke("DestorySelf", 3);
+    }
+
+    void DestroySelf()
+    {
+        Destroy(this.gameObject);
     }
 }
