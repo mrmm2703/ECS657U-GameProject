@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6938531771814900437}
   - component: {fileID: 4269799024238531912}
   - component: {fileID: 2458191231314570794}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 8592115494470980080}
   - component: {fileID: 3442889777360871304}
   - component: {fileID: 6985903628986290722}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Tower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -200,4 +200,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7faad037926284316b85c3a7ecc976bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 0}
+  projectile: {fileID: 3617686687879879265, guid: 14780401b207a4c4584c7c298fa8d6fc, type: 3}
