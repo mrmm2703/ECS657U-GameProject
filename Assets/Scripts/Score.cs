@@ -9,6 +9,7 @@ public class Score : MonoBehaviour
     public static int scoreVal = 0;
     public TextMeshProUGUI score; // Rename the variable for clarity
     public TextMeshProUGUI health;
+    public TextMeshProUGUI round;
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +24,7 @@ public class Score : MonoBehaviour
         // Optionally, you can update the InputField's text during the Update method
         scoreVal = StorageController.GetGamePoints();
         score.text = "Score: " + scoreVal;
-
         health.text = "Health: " + StorageController.GetHealthPoints().ToString();
+        round.text = "Round " + StorageController.GetGameRound().ToString();
     }
 }

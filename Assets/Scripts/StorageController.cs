@@ -6,6 +6,7 @@ public static class StorageController
 {
     private static int gamePoints;
     private static int healthPoints;
+    private static int gameRound;
 
     // Add game points to the users session
     public static void AddGamePoints(int pointsToAdd)
@@ -35,12 +36,25 @@ public static class StorageController
         gamePoints = newPoints;
     }
 
+    // Get current number of game round in the users session
+    public static int GetGameRound()
+    {
+        return gameRound;
+    }
+
+    // Set the number of game points in the users session
+    public static void SetGameRound(int newRound)
+    {
+        gameRound = newRound;
+    }
+
     // Add game points to the users session
     public static void AddHealthPoints(int pointsToAdd)
     {
         healthPoints += pointsToAdd;
 
     }
+
 
     public static bool RemoveHealthPoints(int pointsToRemove)
     {

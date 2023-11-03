@@ -5,21 +5,33 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     private Vector3 shootDirection;
-    public float speed = 30.00f;
+    public float speed = 100f;
+    private int layerPenentration = 1;
 
-    // Update is called once per frame
     void Update()
     {
-        transform.position += shootDirection * 100f * Time.deltaTime;
+        transform.position += shootDirection * speed * Time.deltaTime;
     }
-
+    
     public void Setup(Vector3 shootDirection)
     {
         this.shootDirection = shootDirection;
-        Invoke("DestorySelf", 3);
+        Invoke("DestroySelf", 3);
     }
 
-    void DestroySelf()
+    public int GetLayerPenetration()
+    {
+        return layerPenentration;
+    }
+
+    // Run when projectile should destroy itself (e.g. after timeout)
+    private void DestroySelf()
+    {
+        Destroy(this.gameObject);
+    }
+
+    // Called when projectile hits an enemy object
+    public void HitEnemy()
     {
         Destroy(this.gameObject);
     }

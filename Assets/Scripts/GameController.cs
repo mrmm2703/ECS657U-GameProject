@@ -7,48 +7,109 @@ public class GameController : MonoBehaviour
     public GameObject spawnPoint;
     public GameObject enemyToSpawn;
 
-    private float spawnX;
-    private float spawnZ;
+    public int initialHealthPoints = 150;
+    public int initialGamePoints = 20;
 
-    private int points = 0;
+    private int roundNumber = 1;
+    public float difficultyFactor = 1;
+
+    private Vector3 spawnVector;
+
+    private int CalculateWaves()
+    {
+        return (int)(2.5f * Mathf.Sqrt(roundNumber));
+    }
+
+    private int CalculateMaxLayers()
+    {
+        return (int)(2f * Mathf.Sqrt(roundNumber));
+    }
+
+    private int CalculateEnemiesInWave(int waveNumber)
+    {
+        return 5;
+        return (int)(0.001f * Mathf.Pow(waveNumber+25, 2f));
+    }
+
+    private float CalculateTimeBetweenEnemies(int waveNumber)
+    {
+        float x = (-0.15f * (0.25f * roundNumber) * waveNumber) + 1.25f;
+        if (x < 0.2) x = 0.2f;
+        return x;
+    }
+
+    private int CalculateMinLayers(int maxLayers)
+    {
+        return Mathf.Max((int)(maxLayers * 0.75f), 1);
+    }
+
+    private float CalculateEnemySpeed()
+    {
+        return (int)(3f * Mathf.Sqrt(roundNumber+0.8f));
+    }
+
+    private void NewRound()
+    {    
+        Queue<EnemyWave> waves = new Queue<EnemyWave>();
+
+        // Use graph functions to calculate max layers and no. of waves
+        int maxLayers = CalculateMaxLayers();
+        int minLayers = CalculateMinLayers(maxLayers);
+        int numWaves = CalculateWaves();
+        float enemySpeed = CalculateEnemySpeed();
+        Debug.Log("Round " + roundNumber + ", min,max layers " + minLayers + "," + maxLayers + " numWaves " + numWaves);
+
+        for (int w = 1; w <= numWaves; w++)
+        {
+            EnemyWave curWave = gameObject.AddComponent<EnemyWave>();
+            float enemyDelay = CalculateTimeBetweenEnemies(w);
+            int numEnemies = CalculateEnemiesInWave(w);
+            curWave.Setup(enemyDelay * 1.3f);
+            int layersEnemies = Random.Range(minLayers, maxLayers);
+            Debug.Log("Wave " + w +", delay " + enemyDelay + " numEnemies " + numEnemies + " layers " + layersEnemies);
+            for (int e = 0; e < numEnemies; e++)
+            {
+                EnemySpawner newEnemySpawner = gameObject.AddComponent<EnemySpawner>();
+                newEnemySpawner.Setup(layersEnemies, enemyDelay, spawnVector, enemyToSpawn, enemySpeed);
+                curWave.AddEnemy(newEnemySpawner);
+            }
+            waves.Enqueue(curWave);
+            Debug.Log("Added wave with " + curWave.GetNumberOfEnemies() + " enemies");
+        }
+
+        StartCoroutine(StartRound());
+
+        IEnumerator StartRound()
+        {
+            while (waves.Count > 0)
+            {
+                EnemyWave curWave = waves.Dequeue();
+                float waitTime = curWave.GetTotalWaveTime();
+                curWave.Spawn();
+                yield return new WaitForSeconds(waitTime);
+            }
+            NewRound();
+        }
+
+        roundNumber++;
+        StorageController.SetGameRound(roundNumber-1);
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        spawnX = spawnPoint.transform.position.x;
-        spawnZ = spawnPoint.transform.position.z;
-        InvokeRepeating("SpawnEnemy", 3f, 0.5f);
+        float spawnX = spawnPoint.transform.position.x;
+        float spawnZ = spawnPoint.transform.position.z;
+        spawnVector = new Vector3(spawnX, 0, spawnZ);
         InvokeRepeating("GiveMoney", 30f, 20f);
-        StorageController.SetHealthPoints(150);
-        StorageController.SetGamePoints(20);
+        Invoke("NewRound", 1f);
+        StorageController.SetHealthPoints(initialHealthPoints);
+        StorageController.SetGamePoints(initialGamePoints);
+        StorageController.SetGameRound(roundNumber);
     }
 
     void GiveMoney()
     {
         StorageController.AddGamePoints(10);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void addPoints(int pointsToAdd)
-    {
-        points += pointsToAdd;
-    }
-
-    public void removePoints(int pointsToRemove)
-    {
-        points -= pointsToRemove;
-    }
-
-    // Spawn an enemy
-    void SpawnEnemy()
-    {
-        float speed = Random.Range(2f, 20f);
-        GameObject enemy = Instantiate(enemyToSpawn, new Vector3(spawnX, 0 , spawnZ), Quaternion.identity);
-        enemy.GetComponent<EnemyController>().speed = speed;
     }
 }
