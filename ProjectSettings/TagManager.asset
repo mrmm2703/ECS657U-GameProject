@@ -6,6 +6,9 @@ TagManager:
   tags:
   - TurnLandmark
   - DespawnLandmark
+  - Projectile
+  - Enemy
+  - Projectile2
   layers:
   - Default
   - TransparentFX

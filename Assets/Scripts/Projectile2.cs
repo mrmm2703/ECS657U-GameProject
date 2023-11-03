@@ -6,8 +6,10 @@ using UnityEngine;
 public class Projectile2 : MonoBehaviour
 {
     private Transform shootDirection;
-    public float explosionRadius = 0.0f;
+    public float explosionRadius = 0f;
     public float speed = 30.00f;
+    public Material explosionMaterial;
+    private GameObject explosionObject;
 
     // Update is called once per frame
     void Update()
@@ -22,8 +24,7 @@ public class Projectile2 : MonoBehaviour
         float distanceInFrame = speed * Time.deltaTime;
 
         if (dir.magnitude <= distanceInFrame) { 
-            Destroy(shootDirection.gameObject);
-            Destroy(gameObject);
+            DestroySelf(); 
         }
 
         transform.Translate(dir.normalized * distanceInFrame, Space.World);
@@ -35,18 +36,21 @@ public class Projectile2 : MonoBehaviour
         
     }
 
-    void DestroySelf()
+    public void DestroySelf()
     {
         if (explosionRadius > 0f)
         {
+            Debug.Log("explosion > 0");
             Explode();
         }
         else
         {
+            Debug.Log("explision > 0 NOT");
             Damage(shootDirection);
         }
 
-        
+        Destroy(shootDirection.gameObject);
+        Destroy(gameObject);
     }
 
     void Explode()
@@ -61,9 +65,15 @@ public class Projectile2 : MonoBehaviour
         }
     }
 
+    void DestroyExplosion()
+    {
+        Debug.Log("DESTORY MEEEE!");
+        Destroy(explosionObject.gameObject);
+    }
+
     void Damage(Transform enemy)
     {
-        Destroy(this.gameObject);
+        Destroy(enemy.gameObject);
     }
 
 }

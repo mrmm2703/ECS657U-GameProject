@@ -116,7 +116,6 @@ GameObject:
   - component: {fileID: 2276775633473299511}
   - component: {fileID: 8592115494470980080}
   - component: {fileID: 3442889777360871304}
-  - component: {fileID: 6985903628986290722}
   m_Layer: 2
   m_Name: Tower 2
   m_TagString: Untagged
@@ -188,16 +187,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &6985903628986290722
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3199125998706177593}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7faad037926284316b85c3a7ecc976bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectile: {fileID: 3617686687879879265, guid: 0e061535b8584c44db74586a0f49599c, type: 3}

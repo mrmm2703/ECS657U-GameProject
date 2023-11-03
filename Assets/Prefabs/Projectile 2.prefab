@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 1312678155925857693}
   m_Layer: 0
   m_Name: Projectile 2
-  m_TagString: Projectile
+  m_TagString: Projectile2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -130,8 +130,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e6172045441d924a89fd336e46e3cec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionRadius: 0
+  explosionRadius: 2
   speed: 30
+  explosionMaterial: {fileID: 0}
 --- !u!65 &989415686186278812
 BoxCollider:
   m_ObjectHideFlags: 0

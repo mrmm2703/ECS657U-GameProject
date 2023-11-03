@@ -32,8 +32,15 @@ public class EnemyController : MonoBehaviour
         }
         if (other.gameObject.tag == "Projectile")
         {
+            Debug.Log("projectile");
             Destroy(other.gameObject);
             Destroy(this.gameObject);
+            StorageController.AddGamePoints(1);
+        }
+        if (other.gameObject.tag == "Projectile2")
+        {
+            Debug.Log("projetcviel2");
+            other.GetComponent<Projectile2>().DestroySelf();
             StorageController.AddGamePoints(1);
         }
     }

@@ -17,17 +17,10 @@ public class GameController : MonoBehaviour
     {
         spawnX = spawnPoint.transform.position.x;
         spawnZ = spawnPoint.transform.position.z;
-        InvokeRepeating("SpawnEnemy", 3f, 1f);
+        InvokeRepeating("SpawnEnemy", 3f, 0.5f);
         InvokeRepeating("GiveMoney", 30f, 20f);
         StorageController.SetHealthPoints(150);
         StorageController.SetGamePoints(20);
-        InvokeRepeating("PrintStats", 0f, 1f);
-    }
-
-    void PrintStats()
-    {
-        Debug.Log("Game Points: " + StorageController.GetGamePoints().ToString());
-        Debug.Log("Health Points: " + StorageController.GetHealthPoints().ToString());
     }
 
     void GiveMoney()
