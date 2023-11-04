@@ -95,7 +95,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 0}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 9130261b59cfa42269749979daf0ebf9, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -531,6 +531,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3707019623336986833, guid: 9eb32e7dabdd94f7b9a9d65810b835c8, type: 3}
+      propertyPath: m_ClearFlags
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3707019623336986833, guid: 9eb32e7dabdd94f7b9a9d65810b835c8, type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0.17947249
+      objectReference: {fileID: 0}
+    - target: {fileID: 3707019623336986833, guid: 9eb32e7dabdd94f7b9a9d65810b835c8, type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0.38679248
+      objectReference: {fileID: 0}
+    - target: {fileID: 3707019623336986833, guid: 9eb32e7dabdd94f7b9a9d65810b835c8, type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0.1550819
+      objectReference: {fileID: 0}
     - target: {fileID: 5688722534422113761, guid: 9eb32e7dabdd94f7b9a9d65810b835c8, type: 3}
       propertyPath: cameraBounds
       value: 
@@ -3751,6 +3767,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1254798697}
   m_CullTransparentMesh: 1
+--- !u!1001 &1267585784
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4713666662048696619, guid: 5c77a3ef5cbbc4ca89ccc816d9934c07, type: 3}
+      propertyPath: m_Name
+      value: SoundPlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 4975948979109093995, guid: 5c77a3ef5cbbc4ca89ccc816d9934c07, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4975948979109093995, guid: 5c77a3ef5cbbc4ca89ccc816d9934c07, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4975948979109093995, guid: 5c77a3ef5cbbc4ca89ccc816d9934c07, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4975948979109093995, guid: 5c77a3ef5cbbc4ca89ccc816d9934c07, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4975948979109093995, guid: 5c77a3ef5cbbc4ca89ccc816d9934c07, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4975948979109093995, guid: 5c77a3ef5cbbc4ca89ccc816d9934c07, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4975948979109093995, guid: 5c77a3ef5cbbc4ca89ccc816d9934c07, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4975948979109093995, guid: 5c77a3ef5cbbc4ca89ccc816d9934c07, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4975948979109093995, guid: 5c77a3ef5cbbc4ca89ccc816d9934c07, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4975948979109093995, guid: 5c77a3ef5cbbc4ca89ccc816d9934c07, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5c77a3ef5cbbc4ca89ccc816d9934c07, type: 3}
 --- !u!1 &1273322186
 GameObject:
   m_ObjectHideFlags: 0
@@ -3908,6 +3981,10 @@ PrefabInstance:
       propertyPath: enemyToSpawn
       value: 
       objectReference: {fileID: 1275384735042554310, guid: db499667ff7ad4900a07f927e47126f1, type: 3}
+    - target: {fileID: 2166048133246588973, guid: 15d286761c9ec46c2baa2a2cb5086838, type: 3}
+      propertyPath: initialGamePoints
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 2166048133246588973, guid: 15d286761c9ec46c2baa2a2cb5086838, type: 3}
       propertyPath: landmarks.Array.size
       value: 4
@@ -6021,3 +6098,4 @@ SceneRoots:
   - {fileID: 2104480139}
   - {fileID: 2039987737}
   - {fileID: 43099159}
+  - {fileID: 1267585784}

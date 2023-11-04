@@ -6,6 +6,8 @@ using UnityEngine;
 // Controller for the towers to perform certain actions, and detect enemies within the tower collider
 public class TowerController2 : MonoBehaviour
 {
+    private SoundController soundController;
+
     // Allows assignment of a specified projectile type
     public GameObject projectile;
 
@@ -15,6 +17,7 @@ public class TowerController2 : MonoBehaviour
     // Start is called before the first frame update, it invokes the DoAction function every 1.5 seconds, and the range is after how long the towers shoot the bullets.
     void Start()
     {
+        soundController = SoundController.GetControllerInScene();
         InvokeRepeating("DoAction", Random.Range(0f, 2f), 1.5f);
     }
 
@@ -40,6 +43,7 @@ public class TowerController2 : MonoBehaviour
             {
                 GameObject projectileInstance = Instantiate(projectile, transform.position, Quaternion.identity);
                 projectileInstance.GetComponent<Projectile2>().Setup(other.transform);
+                soundController.PlaySound(SoundController.Sound.Boom);
                 enemiesInRange.RemoveAt(0);
             }
         }

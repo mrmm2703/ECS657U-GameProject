@@ -9,6 +9,8 @@ public class EnemyController : MonoBehaviour
     private int layers = 1;
     private bool activated;
 
+    private SoundController soundController;
+
     // Move on every frame if active
     void Update()
     {
@@ -43,22 +45,25 @@ public class EnemyController : MonoBehaviour
         // Destory self and remove health points from player
         if (other.gameObject.tag == "DespawnLandmark")
         {
-            Destroy(this.gameObject);
+            soundController.PlaySound(SoundController.Sound.Uhh);
             StorageController.RemoveHealthPoints(layers);
             if (StorageController.GetHealthPoints() < 1)
             {
                 SceneManager.LoadScene("GameOver", LoadSceneMode.Single);
             }
+            Destroy(this.gameObject);
         }
         if (other.gameObject.tag == "Projectile")
         {
             TakeHit(other.gameObject);
+            soundController.PlaySound(SoundController.Sound.Pop);
         }
         if (other.gameObject.tag == "Projectile2")
         {
             Debug.Log("projetcviel2");
             other.GetComponent<Projectile2>().DestroySelf();
             StorageController.AddGamePoints(1);
+            soundController.PlaySound(SoundController.Sound.Pop);
         }
     }
 
@@ -72,5 +77,10 @@ public class EnemyController : MonoBehaviour
             Destroy(this.gameObject);
             StorageController.AddGamePoints(1);
         }
+    }
+
+    private void Start()
+    {
+        soundController = SoundController.GetControllerInScene();
     }
 }

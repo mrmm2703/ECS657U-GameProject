@@ -15,12 +15,14 @@ public class Node : MonoBehaviour
     private Color startcolor;
     private GameObject towerOnNode = null;
     private bool hasTower = false;
+    private SoundController soundController;
 
     // Initialising the start color of the node
     void Start()
     {
         ren = GetComponent<Renderer>();
         startcolor = ren.material.color;
+        soundController = SoundController.GetControllerInScene();
     }
 
     // As the mouse hovers over the node the color changes based on whether there is a tower on it or not
@@ -56,6 +58,7 @@ public class Node : MonoBehaviour
     // As the mouse clicks, the tower chooser menu appears as long as there is no tower on the node. Re-clicking the tower sells the tower at half its purchase price
     private void OnMouseDown()
     {
+        soundController.PlaySound(SoundController.Sound.Click);
         if (!hasTower)
         {
             towerChooser.SetNode(this);
