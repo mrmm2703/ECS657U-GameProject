@@ -6,22 +6,21 @@ using TMPro;
 
 public class Score : MonoBehaviour
 {
+    // Static variable for the players score and the text for the display buttons that can be changed later
     public static int scoreVal = 0;
-    public TextMeshProUGUI score; // Rename the variable for clarity
+    public TextMeshProUGUI score; 
     public TextMeshProUGUI health;
     public TextMeshProUGUI round;
 
-    // Start is called before the first frame update
+    // On start we set the text property to display the score value
     void Start()
     {
-        // You can access and set the text property of the InputField to display the score value
         score = GetComponent<TextMeshProUGUI>();
     }
 
-    // Update is called once per frame
+    // Update the score, round and health text based on the storage controllers values
     void Update()
     {
-        // Optionally, you can update the InputField's text during the Update method
         scoreVal = StorageController.GetGamePoints();
         score.text = "Score: " + scoreVal;
         health.text = "Health: " + StorageController.GetHealthPoints().ToString();
