@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Node : MonoBehaviour
 {
+    public TowerChooser towerChooser;
     public GameObject tower;
     public Color hovercolor;
     private int towervalue = 10;
@@ -36,15 +37,22 @@ public class Node : MonoBehaviour
         ren.material.color = startcolor;
     }
 
+    public void AddTower(GameObject towerToAdd, int costOfTower)
+    {
+        towervalue = costOfTower;
+        if (StorageController.RemoveGamePoints(towervalue))
+        {
+            towerOnNode = Instantiate(towerToAdd, transform.position, Quaternion.identity);
+            hasTower = true;
+        }
+    }
+
     private void OnMouseDown()
     {
         if (!hasTower)
         {
-            if (StorageController.RemoveGamePoints(towervalue))
-            {
-                towerOnNode = Instantiate(tower, transform.position, Quaternion.identity);
-                hasTower = true;
-            }
+            towerChooser.SetNode(this);
+            return;
         }
         else
         {
