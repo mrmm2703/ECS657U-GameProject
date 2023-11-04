@@ -10,18 +10,13 @@ public class CameraController : MonoBehaviour
 
     public float mouseSpeed = 2.0f;
 
+    // Store the camera rotation using mouse
     private float yaw = 0.0f;
     private float pitch = 0.0f;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
+        // Mouse right click camera rotation
         if (Input.GetMouseButton(1))
         {
             float actualSpeed = mouseSpeed;
@@ -40,6 +35,7 @@ public class CameraController : MonoBehaviour
             {
                 actualSpeed = actualSpeed * 3;
             }
+            // Camera movement
             if (Input.GetKey(KeyCode.W))
             {
                 Vector3 newPosition = transform.position + (Vector3.forward * Time.deltaTime * actualSpeed);
@@ -85,6 +81,7 @@ public class CameraController : MonoBehaviour
                     transform.Translate(Vector3.left * Time.deltaTime * actualSpeed * 2);
                 }
             }
+            // Camera rotation
             if (Input.GetKey(KeyCode.LeftArrow))
             {
                 transform.Rotate(new Vector3(0, 5 * Time.deltaTime * actualSpeed * -1, 0), Space.World);
@@ -101,6 +98,7 @@ public class CameraController : MonoBehaviour
             {
                 cameraTransform.Rotate(new Vector3(5 * Time.deltaTime * actualSpeed * -1, 0, 0), Space.Self);
             }
+            // Camera height
             if (Input.GetKey(KeyCode.Q))
             {
                 Vector3 newPosition = transform.position + (Vector3.down * Time.deltaTime * actualSpeed);

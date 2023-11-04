@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Class which stores persistent data to be accessed throughout the game
 public static class StorageController
 {
     private static int gamePoints;
@@ -36,26 +37,26 @@ public static class StorageController
         gamePoints = newPoints;
     }
 
-    // Get current number of game round in the users session
+    // Get current round number in the users session
     public static int GetGameRound()
     {
         return gameRound;
     }
 
-    // Set the number of game points in the users session
+    // Set the game round number in the users session
     public static void SetGameRound(int newRound)
     {
         gameRound = newRound;
     }
 
-    // Add game points to the users session
+    // Add health points to the users session
     public static void AddHealthPoints(int pointsToAdd)
     {
         healthPoints += pointsToAdd;
 
     }
 
-
+    // Remove number of health points given
     public static bool RemoveHealthPoints(int pointsToRemove)
     {
         if (gamePoints < pointsToRemove) return false;

@@ -9,7 +9,7 @@ public class EnemyController : MonoBehaviour
     private int layers = 1;
     private bool activated;
 
-    // Update is called once per frame
+    // Move on every frame if active
     void Update()
     {
         if (activated)
@@ -18,12 +18,14 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    // Run before activating to setup speed and layers
     public void Setup(float enemySpeed, int enemyLayers)
     {
         speed = enemySpeed;
         layers = enemyLayers;
     }
 
+    // Activate the enemy and begin moving
     public void Activate()
     {
         activated = true;
@@ -32,11 +34,13 @@ public class EnemyController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        // Change rotation 
         if (other.gameObject.tag == "TurnLandmark")
         {
             Vector3 eulerRotation = new Vector3(other.gameObject.transform.eulerAngles.x, other.gameObject.transform.eulerAngles.y+90, other.gameObject.transform.eulerAngles.z);
             transform.rotation = Quaternion.Euler(eulerRotation);
         }
+        // Destory self and remove health points from player
         if (other.gameObject.tag == "DespawnLandmark")
         {
             Destroy(this.gameObject);
@@ -58,6 +62,7 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    // Remove layers destroyed by projectile
     private void TakeHit(GameObject projectile)
     {
         layers = layers - projectile.GetComponent<Projectile>().GetLayerPenetration();
