@@ -5,7 +5,7 @@ using UnityEngine;
 public class TowerController : MonoBehaviour
 {
     public GameObject projectile;
-    private List<GameObject> projectilesInRange = new List<GameObject>();
+    private List<GameObject> enemiesInRange = new List<GameObject>();
     private SoundController soundController;
 
     // Start is called before the first frame update
@@ -17,15 +17,15 @@ public class TowerController : MonoBehaviour
 
     private void DoAction()
     {
-        if (projectilesInRange.Count > 0)
+        if (enemiesInRange.Count > 0)
         {
-            GameObject other = projectilesInRange[0];
+            GameObject other = enemiesInRange[0];
             while (other == null)
             {
-                if (projectilesInRange.Count > 0)
+                enemiesInRange.RemoveAt(0);
+                if (enemiesInRange.Count > 0)
                 {
-                    other = projectilesInRange[0];
-                    projectilesInRange.RemoveAt(0);
+                    other = enemiesInRange[0];
                 } else
                 {
                     break;
@@ -37,7 +37,6 @@ public class TowerController : MonoBehaviour
                 soundController.PlaySound(SoundController.Sound.Phewm);
                 Vector3 shootDirection = (other.transform.position - transform.position).normalized;
                 projectileInstance.GetComponent<Projectile>().Setup(shootDirection);
-                projectilesInRange.RemoveAt(0);
             }
         }
     }
@@ -46,7 +45,7 @@ public class TowerController : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
-            projectilesInRange.Add(other.gameObject);
+            enemiesInRange.Add(other.gameObject);
         }
     }
 
@@ -54,7 +53,7 @@ public class TowerController : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
-            projectilesInRange.Remove(other.gameObject);
+            enemiesInRange.Remove(other.gameObject);
         }
     }
 }
