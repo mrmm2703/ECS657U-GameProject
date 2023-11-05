@@ -6,8 +6,11 @@ using UnityEngine.SceneManagement;
 public class EnemyController : MonoBehaviour
 {
     private float speed = 1f;
+    private int fullLayers = 1;
     private int layers = 1;
     private bool activated;
+    private Color startColor;
+    private Renderer ren;
 
     private SoundController soundController;
 
@@ -25,6 +28,7 @@ public class EnemyController : MonoBehaviour
     {
         speed = enemySpeed;
         layers = enemyLayers;
+        fullLayers = enemyLayers;
     }
 
     // Activate the enemy and begin moving
@@ -70,17 +74,22 @@ public class EnemyController : MonoBehaviour
     // Remove layers destroyed by projectile
     private void TakeHit(GameObject projectile)
     {
+        projectile.GetComponent<Projectile>().HitEnemy();
         layers = layers - projectile.GetComponent<Projectile>().GetLayerPenetration();
         if (layers < 1)
         {
-            projectile.GetComponent<Projectile>().HitEnemy();
             Destroy(this.gameObject);
             StorageController.AddGamePoints(1);
+        } else {
+            Color newColor = new Color(0, 0, 0, layers / (float)fullLayers); ;
+            ren.material.color = newColor;
         }
     }
 
     private void Start()
     {
         soundController = SoundController.GetControllerInScene();
+        ren = GetComponentInChildren<Renderer>();
+        startColor = ren.material.color;
     }
 }
