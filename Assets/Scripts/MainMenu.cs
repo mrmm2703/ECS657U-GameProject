@@ -15,7 +15,7 @@ public class MainMenu : MonoBehaviour
 
     private void OpenGameScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene("MapOne");
     }
 
     // Quits the application when the Quit button is pressed
