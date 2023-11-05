@@ -16,10 +16,65 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
+        float actualSpeed = speed;
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            actualSpeed = actualSpeed * 3;
+        }
+        // Camera movement
+        if (Input.GetKey(KeyCode.W))
+        {
+            Vector3 newPosition = transform.position + (Vector3.forward * Time.deltaTime * actualSpeed);
+            if (cameraBounds.bounds.Contains(newPosition))
+            {
+                transform.Translate(Vector3.forward * Time.deltaTime * actualSpeed);
+            }
+            else
+            {
+                transform.Translate(Vector3.back * Time.deltaTime * actualSpeed * 2);
+            }
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            Vector3 newPosition = transform.position + (Vector3.back * Time.deltaTime * actualSpeed);
+            if (cameraBounds.bounds.Contains(newPosition))
+            {
+                transform.Translate(Vector3.back * Time.deltaTime * actualSpeed);
+            }
+            else
+            {
+                transform.Translate(Vector3.forward * Time.deltaTime * actualSpeed * 2);
+            }
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+            Vector3 newPosition = transform.position + (Vector3.left * Time.deltaTime * actualSpeed);
+            if (cameraBounds.bounds.Contains(newPosition))
+            {
+                transform.Translate(Vector3.left * Time.deltaTime * actualSpeed);
+            }
+            else
+            {
+                transform.Translate(Vector3.right * Time.deltaTime * actualSpeed * 2);
+            }
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            Vector3 newPosition = transform.position + (Vector3.right * Time.deltaTime * actualSpeed);
+            if (cameraBounds.bounds.Contains(newPosition))
+            {
+                transform.Translate(Vector3.right * Time.deltaTime * actualSpeed);
+            }
+            else
+            {
+                transform.Translate(Vector3.left * Time.deltaTime * actualSpeed * 2);
+            }
+        }
+
         // Mouse right click camera rotation
         if (Input.GetMouseButton(1))
         {
-            float actualSpeed = mouseSpeed;
+            actualSpeed = mouseSpeed;
             if (Input.GetKey(KeyCode.LeftShift))
             {
                 actualSpeed = actualSpeed * 2;
@@ -30,57 +85,6 @@ public class CameraController : MonoBehaviour
 
         } else
         {
-            float actualSpeed = speed;
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
-                actualSpeed = actualSpeed * 3;
-            }
-            // Camera movement
-            if (Input.GetKey(KeyCode.W))
-            {
-                Vector3 newPosition = transform.position + (Vector3.forward * Time.deltaTime * actualSpeed);
-                if (cameraBounds.bounds.Contains(newPosition))
-                {
-                    transform.Translate(Vector3.forward * Time.deltaTime * actualSpeed);
-                } else
-                {
-                    transform.Translate(Vector3.back * Time.deltaTime * actualSpeed * 2);
-                }
-            }
-            if (Input.GetKey(KeyCode.S))
-            {
-                Vector3 newPosition = transform.position + (Vector3.back * Time.deltaTime * actualSpeed);
-                if (cameraBounds.bounds.Contains(newPosition))
-                {
-                    transform.Translate(Vector3.back * Time.deltaTime * actualSpeed);
-                } else
-                {
-                    transform.Translate(Vector3.forward * Time.deltaTime * actualSpeed * 2);
-                }
-            }
-            if (Input.GetKey(KeyCode.A))
-            {
-                Vector3 newPosition = transform.position + (Vector3.left * Time.deltaTime * actualSpeed);
-                if (cameraBounds.bounds.Contains(newPosition))
-                {
-                    transform.Translate(Vector3.left * Time.deltaTime * actualSpeed);
-                } else
-                {
-                    transform.Translate(Vector3.right * Time.deltaTime * actualSpeed * 2);
-                }
-            }
-            if (Input.GetKey(KeyCode.D))
-            {
-                Vector3 newPosition = transform.position + (Vector3.right * Time.deltaTime * actualSpeed);
-                if (cameraBounds.bounds.Contains(newPosition))
-                {
-                    transform.Translate(Vector3.right * Time.deltaTime * actualSpeed);
-                }
-                else
-                {
-                    transform.Translate(Vector3.left * Time.deltaTime * actualSpeed * 2);
-                }
-            }
             // Camera rotation
             if (Input.GetKey(KeyCode.LeftArrow))
             {
