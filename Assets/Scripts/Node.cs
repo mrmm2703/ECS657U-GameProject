@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Node : MonoBehaviour
 {
@@ -28,6 +29,7 @@ public class Node : MonoBehaviour
     // As the mouse hovers over the node the color changes based on whether there is a tower on it or not
     void OnMouseEnter()
     {
+        if (EventSystem.current.IsPointerOverGameObject()) return;
         if (hasTower)
         {
             ren.material.color = startcolor;
@@ -58,6 +60,7 @@ public class Node : MonoBehaviour
     // As the mouse clicks, the tower chooser menu appears as long as there is no tower on the node. Re-clicking the tower sells the tower at half its purchase price
     private void OnMouseDown()
     {
+        if (EventSystem.current.IsPointerOverGameObject()) return;
         soundController.PlaySound(SoundController.Sound.Click);
         if (!hasTower)
         {
