@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028305, g: 0.22571313, b: 0.3069213, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4970,7 +4970,7 @@ PrefabInstance:
       objectReference: {fileID: 1275384735042554310, guid: db499667ff7ad4900a07f927e47126f1, type: 3}
     - target: {fileID: 2166048133246588973, guid: 15d286761c9ec46c2baa2a2cb5086838, type: 3}
       propertyPath: initialGamePoints
-      value: 100
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 2166048133246588973, guid: 15d286761c9ec46c2baa2a2cb5086838, type: 3}
       propertyPath: landmarks.Array.size
