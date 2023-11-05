@@ -6,8 +6,9 @@ To play the game, go to the link https://mrmm2703.github.io/ECS657U-GameProject/
 
 ### How to play
 The controls for playing the game are below:
-##### Movement
+##### Game controls
 
+* `ESC` - pause
 * `W` - move forwards
 * `A` - move left
 * `S` - move backwards
@@ -18,7 +19,6 @@ The controls for playing the game are below:
 * `↓` - look down
 * `←` - look left
 * `→` - look right
-
 
 ##### Tower interaction
 * Click an empty node to place a tower down
