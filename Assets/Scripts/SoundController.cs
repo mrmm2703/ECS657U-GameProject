@@ -60,7 +60,6 @@ public class SoundController : MonoBehaviour
 
     private void PlayAudioClip(AudioClip clipToPlay, float volume = 1f)
     {
-        return; // TEMP for prototype to not play any sounds
         AudioSource audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.volume = volume;
         audioSource.Stop();
