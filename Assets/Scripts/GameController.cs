@@ -35,7 +35,7 @@ public class GameController : MonoBehaviour
     private int CalculateEnemiesInWave(int waveNumber)
     {
         return 5;
-        return (int)(0.001f * Mathf.Pow(waveNumber+25, 2f));
+        //return (int)(0.001f * Mathf.Pow(waveNumber+25, 2f));
     }
 
     // Calculate time delay between enemies spawning based on round and wave
