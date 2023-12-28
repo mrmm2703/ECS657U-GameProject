@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
@@ -29,5 +30,10 @@ public class MainMenu : MonoBehaviour
     private void Start()
     {
         soundController = SoundController.GetControllerInScene();
+    }
+
+    public static void ChangeSoundEffectsVolume(Slider slider)
+    {
+        StorageController.SetSoundEffectsVolume(slider.value);
     }
 }

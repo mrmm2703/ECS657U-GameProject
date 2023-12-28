@@ -35,25 +35,26 @@ public class SoundController : MonoBehaviour
 
     public void PlaySound(Sound soundToPlay)
     {
+        float fxVol = StorageController.GetSoundEffectsVolume();
         switch (soundToPlay)
         {
             case Sound.Pop:
-                PlayAudioClip(popSound, .3f);
+                PlayAudioClip(popSound, fxVol * 0.5f) ;
                 break;
             case Sound.Boom:
-                PlayAudioClip(boomSound);
+                PlayAudioClip(boomSound, fxVol);
                 break;
             case Sound.Phewm:
-                PlayAudioClip(phewmSound);
+                PlayAudioClip(phewmSound, fxVol);
                 break;
             case Sound.Uhh:
-                PlayAudioClip(uhhSound);
+                PlayAudioClip(uhhSound, fxVol);
                 break;
             case Sound.Click:
-                PlayAudioClip(clickSound);
+                PlayAudioClip(clickSound, fxVol);
                 break;
             case Sound.LetsGo:
-                PlayAudioClip(letsGoSound);
+                PlayAudioClip(letsGoSound, fxVol);
                 break;
         }
     }

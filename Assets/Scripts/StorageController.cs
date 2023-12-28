@@ -9,6 +9,8 @@ public static class StorageController
     private static int healthPoints;
     private static int gameRound;
 
+    private static float soundEffectsVolume = 1f;
+
     // Add game points to the users session
     public static void AddGamePoints(int pointsToAdd)
     {
@@ -74,5 +76,17 @@ public static class StorageController
     public static void SetHealthPoints(int newPoints)
     {
         healthPoints = newPoints;
+    }
+
+    // Set the volume for all sound effects
+    public static void SetSoundEffectsVolume(float newVol)
+    {
+        soundEffectsVolume = newVol;
+    }
+
+    // Get the volume of sound effects
+    public static float GetSoundEffectsVolume()
+    {
+        return soundEffectsVolume;
     }
 }
