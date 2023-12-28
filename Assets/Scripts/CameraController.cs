@@ -5,6 +5,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     public float speed = 1.0f;
+    public float maxCamAngle = 60f;
     public Transform cameraTransform;
     public BoxCollider cameraBounds;
 
@@ -122,14 +123,23 @@ public class CameraController : MonoBehaviour
             }
             if (Input.GetKey(KeyCode.DownArrow))
             {
-                cameraTransform.Rotate(new Vector3(5 * Time.deltaTime * actualSpeed, 0, 0), Space.Self);
+                Vector3 newVector = new Vector3(5 * Time.deltaTime * actualSpeed, 0 , 0);
+                if (camInRange(cameraTransform.rotation.eulerAngles.x + newVector.x))
+                    cameraTransform.Rotate(newVector, Space.Self);
             }
             if (Input.GetKey(KeyCode.UpArrow))
             {
-                cameraTransform.Rotate(new Vector3(5 * Time.deltaTime * actualSpeed * -1, 0, 0), Space.Self);
+                Vector3 newVector = new Vector3(5 * Time.deltaTime * actualSpeed * -1, 0, 0);
+                if (camInRange(cameraTransform.rotation.eulerAngles.x + newVector.x))
+                    cameraTransform.Rotate(newVector, Space.Self);
             }
         }
-
         
+    }
+
+    private bool camInRange(float newRotationX)
+    {
+        if (newRotationX > 0+maxCamAngle && newRotationX < 360-maxCamAngle) return false;
+        return true;
     }
 }
