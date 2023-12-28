@@ -71,6 +71,32 @@ public class CameraController : MonoBehaviour
             }
         }
 
+        // Camera height
+        if (Input.GetKey(KeyCode.Q))
+        {
+            Vector3 newPosition = transform.position + (Vector3.down * Time.deltaTime * actualSpeed);
+            if (cameraBounds.bounds.Contains(newPosition))
+            {
+                transform.Translate(Vector3.down * Time.deltaTime * actualSpeed);
+            }
+            else
+            {
+                transform.Translate(Vector3.up * Time.deltaTime * actualSpeed * 2);
+            }
+        }
+        if (Input.GetKey(KeyCode.E))
+        {
+            Vector3 newPosition = transform.position + (Vector3.up * Time.deltaTime * actualSpeed);
+            if (cameraBounds.bounds.Contains(newPosition))
+            {
+                transform.Translate(Vector3.up * Time.deltaTime * actualSpeed);
+            }
+            else
+            {
+                transform.Translate(Vector3.down * Time.deltaTime * actualSpeed * 2);
+            }
+        }
+
         // Mouse right click camera rotation
         if (Input.GetMouseButton(1))
         {
@@ -101,31 +127,6 @@ public class CameraController : MonoBehaviour
             if (Input.GetKey(KeyCode.UpArrow))
             {
                 cameraTransform.Rotate(new Vector3(5 * Time.deltaTime * actualSpeed * -1, 0, 0), Space.Self);
-            }
-            // Camera height
-            if (Input.GetKey(KeyCode.Q))
-            {
-                Vector3 newPosition = transform.position + (Vector3.down * Time.deltaTime * actualSpeed);
-                if (cameraBounds.bounds.Contains(newPosition))
-                {
-                    transform.Translate(Vector3.down * Time.deltaTime * actualSpeed);
-                }
-                else
-                {
-                    transform.Translate(Vector3.up * Time.deltaTime * actualSpeed * 2);
-                }
-            }
-            if (Input.GetKey(KeyCode.E))
-            {
-                Vector3 newPosition = transform.position + (Vector3.up * Time.deltaTime * actualSpeed);
-                if (cameraBounds.bounds.Contains(newPosition))
-                {
-                    transform.Translate(Vector3.up * Time.deltaTime * actualSpeed);
-                }
-                else
-                {
-                    transform.Translate(Vector3.down * Time.deltaTime * actualSpeed * 2);
-                }
             }
         }
 
