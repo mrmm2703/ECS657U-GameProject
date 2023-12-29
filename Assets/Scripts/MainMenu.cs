@@ -7,15 +7,22 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     private SoundController soundController;
+
     // Load the next scene in the build index, which is the next level
     public void Play()
     {
+        Debug.Log("Play button pressed");
+        AudioSource audioSource = GetComponent<AudioSource>();
         soundController.PlaySound(SoundController.Sound.LetsGo);
-        Invoke("OpenGameScene", 1.7f);        
+
+        StartCoroutine(WaitForSoundAndLoadScene(audioSource.clip.length));
+
     }
 
-    private void OpenGameScene()
+
+    private IEnumerator WaitForSoundAndLoadScene(float delay)
     {
+        yield return new WaitForSecondsRealtime(delay);
         SceneManager.LoadScene("MapOne");
     }
 
