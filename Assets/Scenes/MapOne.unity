@@ -548,6 +548,10 @@ PrefabInstance:
       value: 0.1550819
       objectReference: {fileID: 0}
     - target: {fileID: 5688722534422113761, guid: 9eb32e7dabdd94f7b9a9d65810b835c8, type: 3}
+      propertyPath: speed
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5688722534422113761, guid: 9eb32e7dabdd94f7b9a9d65810b835c8, type: 3}
       propertyPath: cameraBounds
       value: 
       objectReference: {fileID: 43099158}
