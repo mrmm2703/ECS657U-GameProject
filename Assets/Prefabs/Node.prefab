@@ -121,7 +121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerChooser: {fileID: 0}
   tower: {fileID: 3199125998706177593, guid: 1eefbfbc8e14d4f9099e242c7c1c9830, type: 3}
-  hovercolor: {r: 0.09825563, g: 0.17165618, b: 0.9056604, a: 1}
+  hovercolor: {r: 0.0039215684, g: 1, b: 0.07832518, a: 0.4745098}
 --- !u!1 &4500816428768185691
 GameObject:
   m_ObjectHideFlags: 0

@@ -27,12 +27,6 @@ public class TowerChooser : MonoBehaviour
         this.gameObject.SetActive(true);
     }
 
-    public void SellTower()
-    {
-        node.RemoveTower();
-        CloseChooser();
-    }
-
     // Select the towerId of the tower you want and pass it to the AddTower method
     public void AddBasicTower()
     {
