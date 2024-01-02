@@ -54,7 +54,7 @@ public class Node : MonoBehaviour
         towervalue = costOfTower;
         if (StorageController.RemoveGamePoints(towervalue))
         {
-            towerOnNode = Instantiate(towerToAdd, transform.position, Quaternion.identity);
+            towerOnNode = Instantiate(towerToAdd, transform.position + new Vector3(0, 5, 0), Quaternion.identity);
             hasTower = true;
         }
     }
