@@ -40,6 +40,8 @@ public class Node : MonoBehaviour
         }
     }
 
+
+
     // As the mouse exits the color reverts back to the start color
     void OnMouseExit()
     {
@@ -57,21 +59,24 @@ public class Node : MonoBehaviour
         }
     }
 
-    // As the mouse clicks, the tower chooser menu appears as long as there is no tower on the node. Re-clicking the tower sells the tower at half its purchase price
-    private void OnMouseDown()
+    public void RemoveTower()
     {
-        if (EventSystem.current.IsPointerOverGameObject()) return;
-        soundController.PlaySound(SoundController.Sound.Click);
-        if (!hasTower)
-        {
-            towerChooser.SetNode(this);
-            return;
-        }
-        else
+        if (hasTower)
         {
             Destroy(towerOnNode);
             StorageController.AddGamePoints(towervalue / 2);
             hasTower = false;
         }
+    }
+
+    // As the mouse clicks, the tower chooser menu appears as long as there is no tower on the node. Re-clicking the tower sells the tower at half its purchase price
+    private void OnMouseDown()
+    {
+        if (EventSystem.current.IsPointerOverGameObject()) return;
+        soundController.PlaySound(SoundController.Sound.Click);
+
+        towerChooser.SetNode(this);
+        return;
+
     }
 }
