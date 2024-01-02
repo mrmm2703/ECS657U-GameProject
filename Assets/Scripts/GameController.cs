@@ -7,9 +7,12 @@ public class GameController : MonoBehaviour
     public GameObject spawnPoint;
     private Vector3 spawnVector;
     public GameObject enemyToSpawn;
+    public RoundCounterUI dynamicGUI;
 
     public int initialHealthPoints = 150;
     public int initialGamePoints = 20;
+
+    public float delayBetweenRounds = 5f;
 
     private int roundNumber = 1;
 
@@ -88,6 +91,7 @@ public class GameController : MonoBehaviour
         // Start all the waves in the round, then run another new round
         IEnumerator StartRound()
         {
+            dynamicGUI.ShowText(0, "Starting round " + roundNumber.ToString(), 2f);
             while (waves.Count > 0)
             {
                 EnemyWave curWave = waves.Dequeue();
@@ -95,6 +99,8 @@ public class GameController : MonoBehaviour
                 curWave.Spawn();
                 yield return new WaitForSeconds(waitTime);
             }
+            dynamicGUI.ShowText(0, "Finished round " + (roundNumber - 1).ToString());
+            yield return new WaitForSeconds(delayBetweenRounds);
             NewRound();
         }
 
@@ -113,6 +119,8 @@ public class GameController : MonoBehaviour
         StorageController.SetHealthPoints(initialHealthPoints);
         StorageController.SetGamePoints(initialGamePoints);
         StorageController.SetGameRound(roundNumber);
+
+        dynamicGUI.ShowText(0, "Starting game!", 3f);
     }
 
     // Give money to the player
