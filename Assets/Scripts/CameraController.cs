@@ -106,11 +106,22 @@ public class CameraController : MonoBehaviour
             {
                 actualSpeed = actualSpeed * 2;
             }
-            yaw += actualSpeed * Input.GetAxis("Mouse X");
-            pitch -= actualSpeed * Input.GetAxis("Mouse Y");
-            transform.eulerAngles = new Vector3(pitch, yaw, 0.0f);
+            pitch += Input.GetAxis("Mouse Y") * mouseSpeed;
+            yaw -= Input.GetAxis("Mouse X") * mouseSpeed;
+            transform.localEulerAngles = new Vector3(pitch, yaw, 0.0f);
 
-        } else
+            /*            actualSpeed = mouseSpeed;
+                        if (Input.GetKey(KeyCode.LeftShift))
+                        {
+                            actualSpeed = actualSpeed * 2;
+                        }
+                        yaw += actualSpeed * Input.GetAxis("Mouse X");
+                        pitch -= actualSpeed * Input.GetAxis("Mouse Y");
+                        transform.eulerAngles = new Vector3(pitch, yaw, 0.0f);
+            */
+
+        }
+        else
         {
             // Camera rotation
             if (Input.GetKey(KeyCode.LeftArrow))
