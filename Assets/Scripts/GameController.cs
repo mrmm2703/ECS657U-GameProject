@@ -120,7 +120,6 @@ public class GameController : MonoBehaviour
         StorageController.SetGamePoints(initialGamePoints);
         StorageController.SetGameRound(roundNumber);
 
-        dynamicGUI.ShowText(0, "Starting game!", 3f);
     }
 
     // Give money to the player
