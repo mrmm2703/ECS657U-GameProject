@@ -16,7 +16,16 @@ public class MainMenu : MonoBehaviour
         soundController.PlaySound(SoundController.Sound.LetsGo);
 
         StartCoroutine(WaitForSoundAndLoadScene(audioSource.clip.length));
+    }
 
+    public void RestartMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void RestartLevel1()
+    {
+        SceneManager.LoadScene("MapOne");
     }
 
 
