@@ -29,10 +29,10 @@ public class SpeedController : MonoBehaviour
         GameSpeed = 2.0f;
     }
 
-    public void X3()
+    public void X5()
     {
-        Time.timeScale = 3.0f;
-        GameSpeed = 3.0f;
+        Time.timeScale = 5.0f;
+        GameSpeed = 5.0f;
     }
 
 }
