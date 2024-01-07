@@ -22,9 +22,15 @@ public abstract class BaseTower : MonoBehaviour
 
     protected abstract void Init();
 
+    public int GetCurrentLevel()
+    {
+        return upgradeLevel;
+    }
+
     protected void SetShootRate(float repeatEverySeconds)
     {
         CancelInvoke("DoAction");
+        Debug.Log(repeatEverySeconds);
         InvokeRepeating("DoAction", Random.Range(0f, 2f), repeatEverySeconds);
     }
 
@@ -106,6 +112,6 @@ public abstract class BaseTower : MonoBehaviour
 
     protected abstract void DoUpgrade(int newLevel);
 
-    protected abstract string CurrentStats();
-    protected abstract string NextLevelStats();
+    public abstract string CurrentStats();
+    public abstract string NextLevelStats();
 }

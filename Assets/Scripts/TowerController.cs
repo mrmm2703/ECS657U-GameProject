@@ -8,12 +8,12 @@ public class TowerController : BaseTower
 
     protected override void Init()
     {
-        SetShootRate(1.5f);
+        SetShootRate(CalculateShootRate(upgradeLevel));
     }
 
-    protected override string CurrentStats()
+    public override string CurrentStats()
     {
-        return "Layer Penetration: " + GetPenetrationLayers(upgradeLevel).ToString();
+        return "Layer Penetration: " + GetPenetrationLayers(upgradeLevel).ToString() + ", Attack Delay: " + CalculateShootRate(upgradeLevel).ToString("F2") + "s";
     }
 
     protected override int GetLevelCost(int level)
@@ -21,14 +21,18 @@ public class TowerController : BaseTower
         return Mathf.FloorToInt((8 * level) + initialCost);
     }
 
+    private float CalculateShootRate(int level) {
+        return (10f / 31) * (5 * Mathf.Pow(2, ((level * -1) / 2f)) + 1);
+    }
+
     private int GetPenetrationLayers(int level)
     {
         return level;
     }
 
-    protected override string NextLevelStats()
+    public override string NextLevelStats()
     {
-        return "Layer Penetration: " + (GetPenetrationLayers(upgradeLevel + 1)).ToString();
+        return "Layer Penetration: " + (GetPenetrationLayers(upgradeLevel + 1)).ToString() + ", Attack Delay: " + CalculateShootRate(upgradeLevel + 1).ToString("F2") + "s";
     }
 
     protected override void ShootProjectile(GameObject other)
@@ -41,6 +45,7 @@ public class TowerController : BaseTower
 
     protected override void DoUpgrade(int newLevel)
     {
+        SetShootRate(CalculateShootRate(upgradeLevel));
         return;
     }
 }

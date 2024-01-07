@@ -65,7 +65,7 @@ public class Node : MonoBehaviour
         if (hasTower)
         {
             Destroy(towerOnNode);
-            StorageController.AddGamePoints(towervalue / 2);
+            StorageController.AddGamePoints(towerOnNode.GetComponent<BaseTower>().CurrentValue() / 2);
             hasTower = false;
         }
     }
@@ -79,5 +79,10 @@ public class Node : MonoBehaviour
         towerChooser.SetNode(this);
         return;
 
+    }
+
+    public GameObject GetTowerOnNode()
+    {
+        return towerOnNode;
     }
 }
