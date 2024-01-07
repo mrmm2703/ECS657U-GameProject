@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using UnityEngine.SceneManagement;
 
 public class EnemyController : MonoBehaviour
@@ -9,10 +10,10 @@ public class EnemyController : MonoBehaviour
     private int fullLayers = 1;
     private int layers = 1;
     private bool activated;
-    private Color startColor;
-    private Renderer ren;
 
     private SoundController soundController;
+
+    public TMP_Text healthText;
 
     // Move on every frame if active
     void Update()
@@ -80,15 +81,13 @@ public class EnemyController : MonoBehaviour
         }
         else
         {
-            Color newColor = new Color(0, 0, 0, layers / (float)fullLayers); ;
-            ren.material.color = newColor;
+            healthText.SetText(layers.ToString());
         }
     }
 
     private void Start()
     {
         soundController = SoundController.GetControllerInScene();
-        ren = GetComponentInChildren<Renderer>();
-        startColor = ren.material.color;
+        healthText.SetText(layers.ToString());
     }
 }
