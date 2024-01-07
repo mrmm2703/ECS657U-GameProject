@@ -39,7 +39,7 @@ public class PauseMenu : MonoBehaviour
     public void Play()
     {
         PauseMenuPanel.SetActive(false);
-        Time.timeScale = 1.0f;
+        Time.timeScale = SpeedController.GameSpeed;
         paused = false;
     }
 
