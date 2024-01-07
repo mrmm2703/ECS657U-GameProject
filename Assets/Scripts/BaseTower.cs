@@ -11,11 +11,21 @@ public abstract class BaseTower : MonoBehaviour
     private List<GameObject> enemiesInRange = new List<GameObject>();
     private SoundController soundController;
 
+    protected int upgradeLevel = 1;
+
     // Start is called before the first frame update
     void Start()
     {
         soundController = SoundController.GetControllerInScene();
-        InvokeRepeating("DoAction", Random.Range(0f, 2f), 1.5f);
+        Init();
+    }
+
+    protected abstract void Init();
+
+    protected void SetShootRate(float repeatEverySeconds)
+    {
+        CancelInvoke("DoAction");
+        InvokeRepeating("DoAction", Random.Range(0f, 2f), repeatEverySeconds);
     }
 
     private void DoAction()
@@ -72,4 +82,30 @@ public abstract class BaseTower : MonoBehaviour
     {
         soundController.PlaySound(soundToPlay);
     }
+
+    public int CurrentValue()
+    {
+        return GetLevelCost(upgradeLevel);
+    }
+
+    public int UpgradeCost()
+    {
+        return GetLevelCost(upgradeLevel + 1);
+    }
+
+    protected abstract int GetLevelCost(int level);
+
+    public void UpgradeTower()
+    {
+        if (StorageController.RemoveGamePoints(UpgradeCost()))
+        {
+            upgradeLevel = upgradeLevel + 1;
+            DoUpgrade(upgradeLevel);
+        }
+    }
+
+    protected abstract void DoUpgrade(int newLevel);
+
+    protected abstract string CurrentStats();
+    protected abstract string NextLevelStats();
 }

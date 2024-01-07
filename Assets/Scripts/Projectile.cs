@@ -15,10 +15,11 @@ public class Projectile : MonoBehaviour
     }
 
     // Set the shooting direction
-    public void Setup(Vector3 shootDirection)
+    public void Setup(Vector3 shootDirection, int layerPen)
     {
         this.shootDirection = shootDirection;
         Invoke("DestroySelf", 3);
+        layerPenentration = layerPen;
     }
 
     // Get number of layers this projectile destroys

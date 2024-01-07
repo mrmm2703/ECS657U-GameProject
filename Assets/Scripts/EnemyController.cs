@@ -59,28 +59,27 @@ public class EnemyController : MonoBehaviour
         }
         if (other.gameObject.tag == "Projectile")
         {
-            TakeHit(other.gameObject);
+            other.GetComponent<Projectile>().HitEnemy();
+            TakeHit(other.GetComponent<Projectile>().GetLayerPenetration());
             soundController.PlaySound(SoundController.Sound.Pop);
         }
         if (other.gameObject.tag == "Projectile2")
         {
-            Debug.Log("projetcviel2");
-            other.GetComponent<Projectile2>().DestroySelf();
-            StorageController.AddGamePoints(1);
             soundController.PlaySound(SoundController.Sound.Pop);
+            other.GetComponent<Projectile2>().DestroySelf();
         }
     }
 
-    // Remove layers destroyed by projectile
-    private void TakeHit(GameObject projectile)
+    public void TakeHit(int hitLayers)
     {
-        projectile.GetComponent<Projectile>().HitEnemy();
-        layers = layers - projectile.GetComponent<Projectile>().GetLayerPenetration();
+        layers = layers - hitLayers;
         if (layers < 1)
         {
             Destroy(this.gameObject);
             StorageController.AddGamePoints(1);
-        } else {
+        }
+        else
+        {
             Color newColor = new Color(0, 0, 0, layers / (float)fullLayers); ;
             ren.material.color = newColor;
         }

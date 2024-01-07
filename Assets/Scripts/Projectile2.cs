@@ -7,9 +7,10 @@ public class Projectile2 : MonoBehaviour
 {
 
     // Public variables to be adjusted within the unity editor and for assignments
-    public float explosionRadius = 0f;
+    private float explosionRadius;
     public float speed = 30.00f;
     public Material explosionMaterial;
+    private int layerPenetration;
 
     // Private fixed variables
     private Transform shootDirection;
@@ -38,9 +39,11 @@ public class Projectile2 : MonoBehaviour
     }
 
     // Makes the shooting direction equal to whatever parameters it is fed
-    public void Setup(Transform ShootDirection)
+    public void Setup(Transform ShootDirection, float splashRadius, int layerPen)
     {
+        explosionRadius = splashRadius;
         shootDirection = ShootDirection;
+        layerPenetration = layerPen;
         
     }
 
@@ -84,10 +87,15 @@ public class Projectile2 : MonoBehaviour
         Destroy(explosionObject.gameObject);
     }
 
+    public int GetLayerPenetration()
+    {
+        return layerPenetration;
+    }
+
     // Destroys the enemy
     void Damage(Transform enemy)
     {
-        Destroy(enemy.gameObject);
+        enemy.gameObject.GetComponent<EnemyController>().TakeHit(GetLayerPenetration());
     }
 
 }
