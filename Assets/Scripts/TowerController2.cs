@@ -15,7 +15,7 @@ public class TowerController2 : BaseTower
 
     public override string CurrentStats()
     {
-        return "Layer Penetration: " + GetPenetrationLayers(upgradeLevel).ToString() + ", Splash Radius: " + GetSplashRadius(upgradeLevel).ToString("F2") + "Attack Delay: " + CalculateShootRate(upgradeLevel).ToString("F2") + "s";
+        return "Layer Penetration: " + GetPenetrationLayers(upgradeLevel).ToString() + ", Splash Radius: " + GetSplashRadius(upgradeLevel).ToString("F2") + ", Attack Delay: " + CalculateShootRate(upgradeLevel).ToString("F2") + "s";
     }
 
     protected override int GetLevelCost(int level)
@@ -30,7 +30,7 @@ public class TowerController2 : BaseTower
 
     public override string NextLevelStats()
     {
-        return "Layer Penetration: " + (GetPenetrationLayers(upgradeLevel + 1)).ToString() + ", Splash Radius: " + GetSplashRadius(upgradeLevel + 1).ToString("F2") + "Attack Delay: " + CalculateShootRate(upgradeLevel).ToString("F2") + "s";
+        return "Layer Penetration: " + (GetPenetrationLayers(upgradeLevel + 1)).ToString() + ", Splash Radius: " + GetSplashRadius(upgradeLevel + 1).ToString("F2") + ", Attack Delay: " + CalculateShootRate(upgradeLevel).ToString("F2") + "s";
     }
 
     private float GetSplashRadius(int level)
