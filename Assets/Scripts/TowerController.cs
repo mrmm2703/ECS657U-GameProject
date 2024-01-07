@@ -5,6 +5,9 @@ using UnityEngine;
 public class TowerController : MonoBehaviour
 {
     public GameObject projectile;
+    public float turnSpeed = 10f;
+    public Transform partToRotate;
+    public Transform partToShootFrom;
     private List<GameObject> enemiesInRange = new List<GameObject>();
     private SoundController soundController;
 
@@ -17,9 +20,12 @@ public class TowerController : MonoBehaviour
 
     private void DoAction()
     {
+
         if (enemiesInRange.Count > 0)
         {
             GameObject other = enemiesInRange[0];
+
+            
             while (other == null)
             {
                 enemiesInRange.RemoveAt(0);
@@ -33,9 +39,15 @@ public class TowerController : MonoBehaviour
             }
             if (other != null)
             {
-                GameObject projectileInstance = Instantiate(projectile, transform.position, Quaternion.identity);
+
+                Vector3 dir = other.transform.position - transform.position;
+                Quaternion lookRotation = Quaternion.LookRotation(dir);
+                Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
+                partToRotate.rotation = Quaternion.Euler(-90f, rotation.y, 0f);
+
+                GameObject projectileInstance = Instantiate(projectile, partToShootFrom.position, Quaternion.identity);
                 soundController.PlaySound(SoundController.Sound.Phewm);
-                Vector3 shootDirection = (other.transform.position - transform.position).normalized;
+                Vector3 shootDirection = (other.transform.position - partToShootFrom.position).normalized;
                 projectileInstance.GetComponent<Projectile>().Setup(shootDirection);
             }
         }
@@ -46,6 +58,8 @@ public class TowerController : MonoBehaviour
         if (other.gameObject.tag == "Enemy")
         {
             enemiesInRange.Add(other.gameObject);
+
+
         }
     }
 

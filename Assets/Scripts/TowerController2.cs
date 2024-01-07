@@ -10,7 +10,9 @@ public class TowerController2 : MonoBehaviour
 
     // Allows assignment of a specified projectile type
     public GameObject projectile;
-
+    public float turnSpeed = 10f;
+    public Transform partToRotate;
+    public Transform partToShootFrom;
     // Stores a list of specified enemies in range
     private List<GameObject> enemiesInRange = new List<GameObject>();
 
@@ -41,7 +43,12 @@ public class TowerController2 : MonoBehaviour
             }
             if (other != null)
             {
-                GameObject projectileInstance = Instantiate(projectile, transform.position, Quaternion.identity);
+                Vector3 dir = other.transform.position - transform.position;
+                Quaternion lookRotation = Quaternion.LookRotation(dir);
+                Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
+                partToRotate.rotation = Quaternion.Euler(-90f, rotation.z, 0);
+
+                GameObject projectileInstance = Instantiate(projectile, partToShootFrom.position, Quaternion.identity);
                 projectileInstance.GetComponent<Projectile2>().Setup(other.transform);
                 soundController.PlaySound(SoundController.Sound.Boom);
                 enemiesInRange.RemoveAt(0);
