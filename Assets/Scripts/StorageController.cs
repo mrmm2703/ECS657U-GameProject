@@ -10,6 +10,7 @@ public static class StorageController
     private static int gameRound;
 
     private static float soundEffectsVolume = 1f;
+    private static float backgroundMusicVolume = 1f;
 
     // Add game points to the users session
     public static void AddGamePoints(int pointsToAdd)
@@ -88,5 +89,18 @@ public static class StorageController
     public static float GetSoundEffectsVolume()
     {
         return soundEffectsVolume;
+    }
+
+    // Set the volume for background music
+    public static void SetBackgroundMusicVolume(float newVol)
+    {
+        backgroundMusicVolume = newVol;
+        BackgroundMusic.GetControllerInScene().UpdateVolume(newVol);
+    }
+
+    // Get the volume of background music
+    public static float GetBackgroundMusicVolume()
+    {
+        return backgroundMusicVolume;
     }
 }
