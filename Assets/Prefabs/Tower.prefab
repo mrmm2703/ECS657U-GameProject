@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectile: {fileID: 3617686687879879265, guid: 14780401b207a4c4584c7c298fa8d6fc, type: 3}
-  turnSpeed: 10
+  turnSpeed: 1
   partToRotate: {fileID: 4701965390620425115}
   partToShootFrom: {fileID: 1801643506830598568}
 --- !u!1001 &5100895992557935728
