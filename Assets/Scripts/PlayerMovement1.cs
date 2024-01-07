@@ -44,9 +44,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void MovePlayer(int oppositeOrNot, ForceMode forcetype)
     {
+        float modSpeed = speed * (1 / SpeedController.GameSpeed);
         moveDir = (orientation.forward * verticalInp + orientation.right * horizontalInp) * oppositeOrNot;
 
-        rb.AddForce(moveDir.normalized * speed * 10f, forcetype);
+        rb.AddForce(moveDir.normalized * modSpeed * 10f, forcetype);
 
     }
 }
