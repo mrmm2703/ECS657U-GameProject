@@ -51,6 +51,7 @@ public class Node : MonoBehaviour
     // A tower is added based on the game points the player has, and then realises there is a tower there
     public void AddTower(GameObject towerToAdd, int costOfTower)
     {
+        if (hasTower) return;
         towervalue = costOfTower;
         if (StorageController.RemoveGamePoints(towervalue))
         {
